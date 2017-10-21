@@ -21,7 +21,7 @@ ENV DOCKER_URL_amd64=https://cocl.us/docker-1.10.3-amd64.tgz \
     DOCKER_URL_ppc64le=https://cocl.us/docker-1.10.3-ppc64le.tgz \
     DOCKER_URL=DOCKER_URL_${ARCH}
 
-RUN wget -O - ${!DOCKER_URL} | tar -xzf - -C /usr/bin --strip-components=1 && \
+RUN wget -O - ${!DOCKER_URL} | tar -xzf - -C /usr/bin --strip-components=3 && \
     chmod +x /usr/bin/docker
 
 ENV DAPPER_ENV REPO TAG
