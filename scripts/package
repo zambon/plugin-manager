@@ -10,7 +10,7 @@ cd $(dirname $0)/../package
 TAG=${TAG:-${VERSION}_${ARCH}}
 REPO=${REPO:-rancher}
 
-cp ../bin/plugin-manager ../bin/oldvethsync .
+cp ../bin/plugin-manager .
 
 IMAGE=${REPO}/network-manager:${TAG}
 docker build -t ${IMAGE} .
