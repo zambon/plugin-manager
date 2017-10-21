@@ -1,26 +1,16 @@
 #!/bin/bash
 set -e
 
-source $(dirname $0)/version
+ARCH=${ARCH:?"ARCH not set"}
 
-ARCH=${ARCH:-"amd64"}
-SUFFIX=""
-[ "${ARCH}" != "amd64" ] && SUFFIX="_${ARCH}"
+source $(dirname $0)/version
 
 cd $(dirname $0)/../package
 
-TAG=${TAG:-${VERSION}${SUFFIX}}
+TAG=${TAG:-${VERSION}_${ARCH}}
 REPO=${REPO:-rancher}
 
-if echo $TAG | grep -q dirty; then
-    TAG=dev
-fi
-
-if [ ! -e ../bin/plugin-manager ]; then
-    ../scripts/build
-fi
-
-cp ../bin/plugin-manager .
+cp ../bin/plugin-manager ../bin/oldvethsync .
 
 IMAGE=${REPO}/network-manager:${TAG}
 docker build -t ${IMAGE} .
